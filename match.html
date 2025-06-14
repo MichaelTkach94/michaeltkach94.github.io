@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Match Match Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  #game {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-gap: 10px;
+  }
+  .card {
+    width: 80px;
+    height: 80px;
+    background: #ffb6c1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .matched {
+    background: #98fb98;
+    cursor: default;
+  }
+  .hidden {
+    color: transparent;
+  }
+</style>
+</head>
+<body>
+<div id="game"></div>
+<script>
+const emojis = ['\u{1F497}','\u{1F49C}','\u{1F49E}','\u{1F496}','\u{1F495}','\u{1F498}','\u{1F49A}','\u{1F499}'];
+let cards = emojis.concat(emojis);
+let firstCard = null;
+let lock = false;
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function createBoard() {
+  const game = document.getElementById('game');
+  game.innerHTML = '';
+  shuffle(cards).forEach(emoji => {
+    const card = document.createElement('div');
+    card.classList.add('card', 'hidden');
+    card.textContent = emoji;
+    card.addEventListener('click', () => flip(card));
+    game.appendChild(card);
+  });
+}
+
+function flip(card) {
+  if (lock || card.classList.contains('matched') || !card.classList.contains('hidden')) return;
+  card.classList.remove('hidden');
+  if (!firstCard) {
+    firstCard = card;
+  } else {
+    if (firstCard.textContent === card.textContent) {
+      firstCard.classList.add('matched');
+      card.classList.add('matched');
+      firstCard = null;
+    } else {
+      lock = true;
+      setTimeout(() => {
+        card.classList.add('hidden');
+        firstCard.classList.add('hidden');
+        firstCard = null;
+        lock = false;
+      }, 700);
+    }
+  }
+}
+
+createBoard();
+</script>
+</body>
+</html>
