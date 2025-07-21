@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 30 Дней Без Кофеина</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1 class="game-title">🎯 30 Дней Без Кофеина</h1>
+            <p class="game-subtitle">Твой путь к свободе от кофеиновой зависимости</p>
+        </header>
+
+        <main class="game-main">
+            <!-- Прогресс-бар -->
+            <section class="progress-section">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressPercentage">0</span>% • <span id="progressDays">0</span>/30 дней
+                    </div>
+                </div>
+                
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="streakDays">0</div>
+                        <div class="stat-label">Дней подряд</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-value" id="rewardsEarned">0</div>
+                        <div class="stat-label">Наград</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-value" id="moneySaved">0₽</div>
+                        <div class="stat-label">Сэкономлено</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Календарь -->
+            <section class="calendar-section">
+                <h2>📅 Календарь достижений</h2>
+                <p class="calendar-hint">Нажимай на дни по порядку, когда успешно провел день без кофеина</p>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Дни будут сгенерированы JavaScript -->
+                </div>
+            </section>
+
+            <!-- Награды -->
+            <section class="rewards-section">
+                <h2>🎉 Достижения</h2>
+                <div class="rewards-grid" id="rewardsGrid">
+                    <!-- Награды будут показаны здесь -->
+                </div>
+            </section>
+
+            <!-- Управление -->
+            <section class="controls-section">
+                <button class="btn btn--outline" id="resetBtn">🗑️ Сбросить прогресс</button>
+                <button class="btn btn--secondary" id="testSaveBtn">🧪 Тест сохранения</button>
+            </section>
+        </main>
+
+        <!-- Статус сохранения -->
+        <footer class="save-status">
+            <div class="save-indicator">
+                <span class="save-icon" id="saveIcon">💾</span>
+                <span id="saveStatus">Инициализация...</span>
+            </div>
+        </footer>
+
+        <!-- Модальное окно для наград -->
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal" id="rewardModal">
+            <div class="modal-content">
+                <div class="reward-animation" id="rewardIcon">🎉</div>
+                <h2 id="modalTitle">Поздравляем!</h2>
+                <p id="modalDescription">Вы достигли важной вехи!</p>
+                <div class="modal-footer">
+                    <button class="btn btn--primary" id="closeModalBtn">Продолжить!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно тестирования сохранения -->
+        <div class="modal" id="testModal">
+            <div class="modal-content">
+                <h2>🧪 Тест системы сохранения</h2>
+                <div class="test-results" id="testResults">
+                    <div class="test-item">
+                        <span>URL параметры:</span>
+                        <span id="urlTest">⏳ Тестируем...</span>
+                    </div>
+                    <div class="test-item">
+                        <span>Текущий метод:</span>
+                        <span id="currentMethod">🔍 Проверяем...</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--primary" id="closeTestBtn">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
